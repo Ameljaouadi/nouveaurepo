@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/799296034563764089/bced71e7922a4beea34f028ac3e2a19c/artifacts
+end_time: 1734478327980
+entry_point_name: ''
+experiment_id: '799296034563764089'
+lifecycle_stage: active
+run_id: bced71e7922a4beea34f028ac3e2a19c
+run_name: zealous-shad-339
+run_uuid: bced71e7922a4beea34f028ac3e2a19c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1734478315154
+status: 3
+tags: []
+user_id: ASUS
