@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/483286214387465447/cdc18eeda51449d8994ab97a491ab7e1/artifacts
+end_time: 1734442862936
+entry_point_name: ''
+experiment_id: '483286214387465447'
+lifecycle_stage: active
+run_id: cdc18eeda51449d8994ab97a491ab7e1
+run_name: luminous-midge-114
+run_uuid: cdc18eeda51449d8994ab97a491ab7e1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1734442849316
+status: 3
+tags: []
+user_id: Dell

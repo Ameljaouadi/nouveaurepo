@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/893754602897779985/a8dec7bcda6543339dd2ee16c17e4ae0/artifacts
+end_time: 1734442221082
+entry_point_name: ''
+experiment_id: '893754602897779985'
+lifecycle_stage: active
+run_id: a8dec7bcda6543339dd2ee16c17e4ae0
+run_name: valuable-ant-529
+run_uuid: a8dec7bcda6543339dd2ee16c17e4ae0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1734442214043
+status: 3
+tags: []
+user_id: Dell

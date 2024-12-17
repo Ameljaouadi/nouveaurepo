@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <script>
+        async function submitForm(event) {
+            event.preventDefault();  // Empêche la soumission classique du formulaire
+
+            // Récupérer les données du formulaire
+            const formData = new FormData(document.getElementById("predictionForm"));
+            const data = {
+                data: [
+                    [
+                        parseInt(formData.get("Pregnancies")),
+                        parseInt(formData.get("Glucose")),
+                        parseInt(formData.get("BloodPressure")),
+                        parseInt(formData.get("SkinThickness")),
+                        parseInt(formData.get("Insulin")),
+                        parseFloat(formData.get("BMI")),
+                        parseFloat(formData.get("DiabetesPedigreeFunction")),
+                        parseInt(formData.get("Age"))
+                    ]
+                ]
+            };
+
+            try {
+                // Envoyer les données au serveur en format JSON
+                const response = await fetch("http://127.0.0.1:8000/predict", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)  // Convertir l'objet JavaScript en JSON
+                });
+
+
+
+                 // Vérifier si la réponse est correcte
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log(result);  // Affiche la réponse dans la console pour voir ce que le serveur renvoie
+                    const predictionDiv = document.getElementById("predictionResult");
+                    predictionDiv.innerHTML = `<h2>Prediction: ${result.predictions}</h2>`; // Afficher la prédiction
+                } else {
+                    throw new Error("Error in server response");
+                }
+
+            } catch (error) {
+                console.error("Error:", error);
+                const predictionDiv = document.getElementById("predictionResult");
+                predictionDiv.innerHTML = `<h2>Error: ${error.message}</h2>`; // Afficher l'erreur
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+<!-- Navbar Bootstrap -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">D2P</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Predict</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Description</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="container mt-5">
+        <h1 class="text-center">Welcome to the Diabetes Prediction Project</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <!-- Image et titre -->
+                <div class="text-center mb-4">
+                    <img src="{{ url_for('static', path='images/diabetes.jpg') }}" alt="Prediction Image">
+                    <h2>Diabetes Predictor</h2>
+                </div>
+
+                <!-- Formulaire -->
+                <form id="predictionForm" onsubmit="submitForm(event)">
+                    <input type="number" name="Pregnancies" placeholder="Pregnancies" class="form-control mb-2" required>
+                    <input type="number" name="Glucose" placeholder="Glucose" class="form-control mb-2" required>
+                    <input type="number" name="BloodPressure" placeholder="Blood Pressure" class="form-control mb-2" required>
+                    <input type="number" name="SkinThickness" placeholder="Skin Thickness" class="form-control mb-2" required>
+                    <input type="number" name="Insulin" placeholder="Insulin" class="form-control mb-2" required>
+                    <input type="number" step="any" name="BMI" placeholder="BMI" class="form-control mb-2" required>
+                    <input type="number" step="any" name="DiabetesPedigreeFunction" placeholder="Diabetes Pedigree Function" class="form-control mb-2" required>
+                    <input type="number" name="Age" placeholder="Age" class="form-control mb-2" required>
+
+                    <button type="submit" class="btn btn-primary btn-block">Make Prediction</button>
+                </form>
+                <!-- Résultat de la prédiction -->
+                <div id="predictionResult" class="text-center mt-4"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/806346678577725648/cdd27c6f05654c3d838e1c30cc9b7133/artifacts
+end_time: 1734441778307
+entry_point_name: ''
+experiment_id: '806346678577725648'
+lifecycle_stage: active
+run_id: cdd27c6f05654c3d838e1c30cc9b7133
+run_name: wistful-crane-807
+run_uuid: cdd27c6f05654c3d838e1c30cc9b7133
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1734441771096
+status: 3
+tags: []
+user_id: Dell

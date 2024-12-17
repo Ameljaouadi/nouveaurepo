@@ -1,0 +1,134 @@
+html { width: 100%; height:100%;  }
+
+body {
+
+	width: 100%;
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+    color: rgba(0,0,0,0.3);
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 1.2px;
+     margin: 0 !important;
+    padding: 0 !important;
+
+}
+.login {
+	  width: 100%; /* La largeur du formulaire occupe toute la largeur de la carte */
+
+}
+.grandDiv{
+ display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 85vh;
+     margin-top: 80px;
+}
+.btn{
+background-color: #616161;
+}
+
+.card {
+    width: 450px; /* Ajustez la largeur de la carte */
+    max-width: 700px; /* Ajoutez une largeur maximale pour la mise en page responsive */
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+     height: auto;
+}
+.image0 {
+    position: relative;
+
+}
+
+.image0 img {
+    width: 100%; /* Ajustez la largeur de l'image pour remplir la carte */
+    /* Ajoutez une largeur maximale pour la mise en page responsive */
+     height: 30%;
+    border-radius: 13px 10px 0 0;
+    margin-bottom: 20px;
+}
+
+.image0 h1 {
+ position: absolute;
+    top: 60%; /* Place le titre au milieu de l'image */
+    left: 29%; /* Place le titre au milieu de l'image */
+    transform: translate(-50%, -50%); /* Centre le titre précisément sur l'image */
+    color: white; /* Couleur du texte du titre */
+    z-index: 1; /* Assurez-vous que le titre est au-dessus de l'image */
+    margin: 0; /* Ajustez la marge du titre selon vos préférences */
+}
+input {
+	width: 100%;
+	margin-bottom: 8px;
+
+	border: none;
+	outline: none;
+	padding: 8px;
+	font-size: 13px;
+
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 4px;
+	box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+
+}
+input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    padding: 20px;
+}
+.login form input {
+    margin-bottom: 10px;
+}
+
+h1 {
+    color: #333;
+}
+
+.navbar {
+    background-color: #616161;
+
+
+
+}
+
+.navbar-brand {
+    color: #616161;
+}
+
+
+.navbar-nav .nav-link {
+    color: #fff;
+}
+.image-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly; /* Ajustez selon vos besoins */
+}
+
+.container {
+    max-width: 1200px;
+}
+
+.image-container {
+    text-align: center; /* Centrez le contenu dans chaque image-container */
+    margin: 20px 0;
+    width: 45%; /* Ajustez la largeur comme nécessaire pour afficher deux par ligne */
+}
+
+.image-container img {
+
+      width: 90%; /* Ajustez la largeur de l'image pour remplir le conteneur */
+    height: 89%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}

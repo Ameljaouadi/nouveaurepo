@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/898878195276186480/17afd0513c9548d68345fe2d3b52720e/artifacts
+end_time: 1734452837637
+entry_point_name: ''
+experiment_id: '898878195276186480'
+lifecycle_stage: active
+run_id: 17afd0513c9548d68345fe2d3b52720e
+run_name: mercurial-jay-240
+run_uuid: 17afd0513c9548d68345fe2d3b52720e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1734452826415
+status: 3
+tags: []
+user_id: Dell

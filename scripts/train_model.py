@@ -86,10 +86,48 @@ mlflow.sklearn.log_model(pipeline, "model")
 
 # Sauvegarder le modèle localement avec pickle (facultatif si vous voulez aussi un fichier pickle)
 
-with open('../models/pipeline3.pkl', 'wb') as f:
+with open('../models/pipeline4.pkl', 'wb') as f:
     pickle.dump(pipeline, f)
+
+# Sélectionner le meilleur modèle selon les métriques
+# On récupère tous les runs dans l'expérimentation en cours
+experiment_id = mlflow.get_experiment_by_name(experiment_name).experiment_id
+runs = mlflow.search_runs(experiment_ids=[experiment_id])
+
+
+
+# Trouver le run avec le meilleur score F1 (par exemple)
+#best_run = runs.loc[runs['f1_score'].idxmax()]
+best_run = runs.loc[runs['metrics.f1_score'].idxmax()]
+
+best_model_uri = f"runs:/{best_run.run_id}/model"
+best_model = mlflow.sklearn.load_model(best_model_uri)
+
+#best_model_dir = '../mymodel'
+#os.makedirs(best_model_dir, exist_ok=True)
+
+# Sauvegarder le meilleur modèle localement
+best_model_path = '../mymodel/best_model.pkl'
+with open(best_model_path, 'wb') as f:
+    pickle.dump(best_model, f)
+print(f"Meilleur modèle sauvegardé localement dans '{best_model_path}'.")
+
+# Charger le meilleur modèle
+#best_model_uri = best_run.artifacts['model']
+best_model = mlflow.sklearn.load_model(best_model_uri)
+
+# Utiliser ce modèle pour faire des prédictions futures
+y_pred_best_model = best_model.predict(X_test)
+
+
 
 # Terminer l'exécution de MLflow
 mlflow.end_run()
+
+
+
+
+print(f"Best model (Run ID: {best_run.run_id}) selected for future predictions.")
+
 
 print("Model training and logging completed.")

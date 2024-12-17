@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/771673026733669269/3cc66142a7d34e1eae1d3a5d921bf61a/artifacts
+end_time: 1734476106790
+entry_point_name: ''
+experiment_id: '771673026733669269'
+lifecycle_stage: active
+run_id: 3cc66142a7d34e1eae1d3a5d921bf61a
+run_name: merciful-calf-280
+run_uuid: 3cc66142a7d34e1eae1d3a5d921bf61a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1734476081536
+status: 3
+tags: []
+user_id: ASUS
