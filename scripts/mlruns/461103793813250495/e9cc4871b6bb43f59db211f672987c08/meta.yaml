@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/461103793813250495/e9cc4871b6bb43f59db211f672987c08/artifacts
+end_time: 1734437762297
+entry_point_name: ''
+experiment_id: '461103793813250495'
+lifecycle_stage: active
+run_id: e9cc4871b6bb43f59db211f672987c08
+run_name: hilarious-grub-685
+run_uuid: e9cc4871b6bb43f59db211f672987c08
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1734437757745
+status: 3
+tags: []
+user_id: Dell

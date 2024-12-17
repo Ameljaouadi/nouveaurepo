@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/660749436509714348/d37169430ccc41d3a704363b2d961b70/artifacts
+end_time: 1734439806477
+entry_point_name: ''
+experiment_id: '660749436509714348'
+lifecycle_stage: active
+run_id: d37169430ccc41d3a704363b2d961b70
+run_name: lyrical-worm-535
+run_uuid: d37169430ccc41d3a704363b2d961b70
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1734439801647
+status: 3
+tags: []
+user_id: Dell

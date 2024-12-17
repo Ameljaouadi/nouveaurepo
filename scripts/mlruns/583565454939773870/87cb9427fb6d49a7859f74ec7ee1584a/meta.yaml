@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Dell/Downloads/diabetes_mlops-main/diabetes_mlops-main/scripts/mlruns/583565454939773870/87cb9427fb6d49a7859f74ec7ee1584a/artifacts
+end_time: 1734437159693
+entry_point_name: ''
+experiment_id: '583565454939773870'
+lifecycle_stage: active
+run_id: 87cb9427fb6d49a7859f74ec7ee1584a
+run_name: rogue-sow-289
+run_uuid: 87cb9427fb6d49a7859f74ec7ee1584a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1734437155539
+status: 4
+tags: []
+user_id: Dell

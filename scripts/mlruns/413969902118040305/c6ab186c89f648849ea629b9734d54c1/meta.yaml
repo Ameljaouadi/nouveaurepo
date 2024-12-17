@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/413969902118040305/c6ab186c89f648849ea629b9734d54c1/artifacts
+end_time: 1734439313334
+entry_point_name: ''
+experiment_id: '413969902118040305'
+lifecycle_stage: active
+run_id: c6ab186c89f648849ea629b9734d54c1
+run_name: clean-pig-196
+run_uuid: c6ab186c89f648849ea629b9734d54c1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1734439308775
+status: 3
+tags: []
+user_id: Dell
