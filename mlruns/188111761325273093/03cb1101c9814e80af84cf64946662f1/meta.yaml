@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/188111761325273093/03cb1101c9814e80af84cf64946662f1/artifacts
+end_time: 1734637658203
+entry_point_name: ''
+experiment_id: '188111761325273093'
+lifecycle_stage: active
+run_id: 03cb1101c9814e80af84cf64946662f1
+run_name: SVC
+run_uuid: 03cb1101c9814e80af84cf64946662f1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1734637652503
+status: 3
+tags: []
+user_id: ASUS

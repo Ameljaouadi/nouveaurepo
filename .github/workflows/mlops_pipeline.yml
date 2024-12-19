@@ -55,14 +55,14 @@ jobs:
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
         git remote set-url origin https://x-access-token:${{ secrets.ACTIONS_PAT }}@github.com/Ameljaouadi/nouveaurepo.git
-        git add models/pipeline.pkl
+        git add models/best_model2.pkl
         git commit -m "Update model after retraining on $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
         git push
 
     - name: Build Docker image
       if: env.drift == 'true'
       run: |
-        docker build -t cornelliusyudhawijaya/diabetes_prediction -f dockerfile .
+        docker build -t Ameljaouadi/diabetes_prediction -f dockerfile .
 
     - name: Log in to Docker Hub
       if: env.drift == 'true'
@@ -71,7 +71,7 @@ jobs:
     - name: Push Docker image to Docker Hub
       if: env.drift == 'true'
       run: |
-        docker push ameljaouadi/diabetes_prediction:latest
+        docker push Ameljaouadi/diabetes_prediction:latest
 
     - name: Notify about the process
       run: |

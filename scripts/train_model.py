@@ -4,130 +4,119 @@ from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
 import pickle
 from sklearn.metrics import accuracy_score, precision_score, f1_score
-
+from sklearn.model_selection import train_test_split
 import mlflow
 import mlflow.sklearn
 from datetime import datetime
 
-# Définir l'URL de suivi MLflow
+# Set MLflow tracking URI
 mlflow.set_tracking_uri("http://localhost:5000")
 
-# Générer un nom d'expérimentation dynamique basé sur la date et l'heure
+# Generate dynamic experiment name based on date and time
 experiment_name = f"experiment_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
 
-# Définir l'expérimentation dynamique
+# Set dynamic experiment name
 mlflow.set_experiment(experiment_name)
 
-# Charger les données
-
+# Load data
 reference_data = pd.read_csv('../data/reference_data.csv')
 new_data = pd.read_csv('../data/new_data.csv')
 
-# Combiner les données
-df= pd.concat([reference_data, new_data], ignore_index=True)
+# Combine data
+df = pd.concat([reference_data, new_data], ignore_index=True)
 
-# Séparer les caractéristiques et la cible
-
+# Separate features and target
 X = df.drop('Outcome', axis=1)
 y = df['Outcome']
-# Diviser les données en ensembles d'entraînement et de test
-from sklearn.model_selection import train_test_split
+
+# Check for missing values in the target variable and drop corresponding rows
+if y.isnull().any():
+    print("Dropping rows with NaN in target variable 'Outcome'")
+    df = df.dropna(subset=['Outcome'])
+    X = df.drop('Outcome', axis=1)
+    y = df['Outcome']
+
+# Split data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Prétraitement des caractéristiques numériques
-
+# List of numeric features
 numeric_features = X.columns
+
+# Preprocessor for numeric features
 numeric_transformer = Pipeline(steps=[
     ('imputer', SimpleImputer(strategy='mean')),
     ('scaler', StandardScaler())
 ])
 
-# Transformer les colonnes
-
+# Column transformer
 preprocessor = ColumnTransformer(
     transformers=[
         ('num', numeric_transformer, numeric_features)
     ])
-# Créer le pipeline
 
-pipeline = Pipeline(steps=[
-    ('preprocessor', preprocessor),
-    ('classifier', RandomForestClassifier(random_state=42))
-])
-# Démarrer une nouvelle expérimentation MLflow
+# Create pipelines for three models
+pipelines = {
+    'RandomForest': Pipeline(steps=[
+        ('preprocessor', preprocessor),
+        ('classifier', RandomForestClassifier(random_state=42))
+    ]),
+    'KNN': Pipeline(steps=[
+        ('preprocessor', preprocessor),
+        ('classifier', KNeighborsClassifier())
+    ]),
+    'SVC': Pipeline(steps=[
+        ('preprocessor', preprocessor),
+        ('classifier', SVC(random_state=42))
+    ])
+}
 
-mlflow.start_run()
-run_id = mlflow.active_run().info.run_id
-print("Run ID:", run_id)
+# Train, evaluate and log metrics for each model
+best_f1_score = 0
+best_model_name = None
+best_model = None
 
-# Loguer des paramètres et des métriques
-mlflow.log_param("model_type", "RandomForest")
-mlflow.log_param("data_source", "reference_data + new_data")
-# Entraîner le modèle
+for model_name, pipeline in pipelines.items():
+    with mlflow.start_run(run_name=model_name):
+        # Log parameters
+        mlflow.log_param("model_type", model_name)
+        mlflow.log_param("data_source", "reference_data + new_data")
 
-pipeline.fit(X_train, y_train)
-# Prédictions sur l'ensemble de test
-y_pred = pipeline.predict(X_test)
+        # Train model
+        pipeline.fit(X_train, y_train)
 
-# Calculer les métriques
-accuracy = accuracy_score(y_test, y_pred)
-precision = precision_score(y_test, y_pred)
-f1 = f1_score(y_test, y_pred)
+        # Predictions on the test set
+        y_pred = pipeline.predict(X_test)
 
-# Loguer les métriques dans MLflow
-mlflow.log_metric("accuracy", accuracy)
-mlflow.log_metric("precision", precision)
-mlflow.log_metric("f1_score", f1)
+        # Calculate metrics
+        accuracy = accuracy_score(y_test, y_pred)
+        precision = precision_score(y_test, y_pred)
+        f1 = f1_score(y_test, y_pred)
 
-# Enregistrer le modèle avec MLflow
-mlflow.sklearn.log_model(pipeline, "model")
+        # Log metrics
+        mlflow.log_metric("accuracy", accuracy)
+        mlflow.log_metric("precision", precision)
+        mlflow.log_metric("f1_score", f1)
 
-# Sauvegarder le modèle localement avec pickle (facultatif si vous voulez aussi un fichier pickle)
+        # Log model
+        mlflow.sklearn.log_model(pipeline, "model")
 
-with open('../models/pipeline4.pkl', 'wb') as f:
-    pickle.dump(pipeline, f)
+        # Save the model with the best F1 score
+        if f1 > best_f1_score:
+            best_f1_score = f1
+            best_model_name = model_name
+            best_model = pipeline
 
-# Sélectionner le meilleur modèle selon les métriques
-# On récupère tous les runs dans l'expérimentation en cours
-experiment_id = mlflow.get_experiment_by_name(experiment_name).experiment_id
-runs = mlflow.search_runs(experiment_ids=[experiment_id])
-
-
-
-# Trouver le run avec le meilleur score F1 (par exemple)
-#best_run = runs.loc[runs['f1_score'].idxmax()]
-best_run = runs.loc[runs['metrics.f1_score'].idxmax()]
-
-best_model_uri = f"runs:/{best_run.run_id}/model"
-best_model = mlflow.sklearn.load_model(best_model_uri)
-
-#best_model_dir = '../mymodel'
-#os.makedirs(best_model_dir, exist_ok=True)
-
-# Sauvegarder le meilleur modèle localement
-best_model_path = '../mymodel/best_model.pkl'
+# Save the best model locally
+best_model_path = '../mymodel/best_model2.pkl'
 with open(best_model_path, 'wb') as f:
     pickle.dump(best_model, f)
-print(f"Meilleur modèle sauvegardé localement dans '{best_model_path}'.")
+print(f"Best model ({best_model_name}) saved locally at '{best_model_path}'.")
 
-# Charger le meilleur modèle
-#best_model_uri = best_run.artifacts['model']
-best_model = mlflow.sklearn.load_model(best_model_uri)
-
-# Utiliser ce modèle pour faire des prédictions futures
-y_pred_best_model = best_model.predict(X_test)
-
-
-
-# Terminer l'exécution de MLflow
-mlflow.end_run()
-
-
-
-
-print(f"Best model (Run ID: {best_run.run_id}) selected for future predictions.")
-
+# Print the best model's F1 score
+print(f"Best model (F1 score: {best_f1_score}) selected for future predictions.")
 
 print("Model training and logging completed.")

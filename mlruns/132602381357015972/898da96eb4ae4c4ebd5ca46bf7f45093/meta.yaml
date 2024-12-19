@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/132602381357015972/898da96eb4ae4c4ebd5ca46bf7f45093/artifacts
+end_time: 1734479293693
+entry_point_name: ''
+experiment_id: '132602381357015972'
+lifecycle_stage: active
+run_id: 898da96eb4ae4c4ebd5ca46bf7f45093
+run_name: mercurial-bass-784
+run_uuid: 898da96eb4ae4c4ebd5ca46bf7f45093
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1734479280173
+status: 3
+tags: []
+user_id: ASUS
