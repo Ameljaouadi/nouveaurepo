@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Description </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/stylee.css') }}">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">D2P</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Predict</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="/description">Description</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+</div>
+<div class="image-row">
+    <div class="image-container">
+          <h1>Histogram of Features</h1>
+         <img src="{{ url_for('static', filename='histogramme.png') }}" alt="Histogram" class="image1">
+    </div>
+
+    <div class="image-container">
+        <h1>Heatmap of Correlation</h1>
+         <img src="{{ url_for('static', filename='heatmap.png') }}" alt="Heatmap">
+
+    </div>
+
+    <div class="image-container">
+          <h1>Boxplots</h1>
+          <img src="{{ url_for('static', filename='boxplots.png') }}" alt="Boxplots">
+    </div>
+
+    <div class="image-container">
+        <h1>Pairplot</h1>
+         <img src="{{ url_for('static', filename='pairplot.png') }}" alt="Pairplot" >
+    </div>
+</div>
+
+</div>
+
+
+
+</body>
+</html>
