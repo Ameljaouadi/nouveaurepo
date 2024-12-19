@@ -1,6 +1,7 @@
 artifact_location: mlflow-artifacts:/799296034563764089
 creation_time: 1734478314887
 experiment_id: '799296034563764089'
-last_update_time: 1734478314887
+last_update_time: 1734639547516
 lifecycle_stage: active
 name: experiment_2024-12-18_00-31-52
+tags: {}

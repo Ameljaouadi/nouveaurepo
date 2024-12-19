@@ -21,7 +21,7 @@ experiment_name = f"experiment_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
 
 # Set dynamic experiment name
 mlflow.set_experiment(experiment_name)
-
+print(f"Experiment Name: {experiment_name}")
 # Load data
 reference_data = pd.read_csv('../data/reference_data.csv')
 new_data = pd.read_csv('../data/new_data.csv')

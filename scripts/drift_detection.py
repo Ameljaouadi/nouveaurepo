@@ -10,8 +10,8 @@ data_drift_report = Report(metrics=[
     DataDriftPreset()
 ])
 
-data_drift_report.run(reference_data=reference_data.drop('Outcome', axis =1), 
-                      current_data=new_data.drop('Outcome', axis =1), column_mapping=None)
+data_drift_report.run(reference_data=reference_data.drop('Outcome', axis=1), 
+                      current_data=new_data.drop('Outcome', axis=1), column_mapping=None)
 
 report_json = data_drift_report.as_dict()
 drift_detected = report_json['metrics'][0]['result']['dataset_drift']
